@@ -1,5 +1,5 @@
 def menu():
-    pass
+    print('asd')
 
 
 def words(level, topic):
