@@ -6,13 +6,15 @@ def clear():
 
 def menu():
     menu = ""
-    level = "1"
-    topic = "sup"
+    level = "Easy"
+    topic = "Heroes"
     while menu != "3":
         print("1. Játék kezdése\n2. Beállítások\n3. Kilépés")
         print("\n\nlevel: {}\ntopic: {}".format(level, topic))
         menu = input("\nKérem válasszon a menüből: ")
         clear()
+        if menu == "1":
+            gameLogic()
         if menu == "2":
             settings = difficulty(level, topic)
             level = settings[0]
