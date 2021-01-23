@@ -28,7 +28,14 @@ def difficulty(level, topic):
         if menu == "1":
             print("1. Easy\n2. Medium\n3. Hard")
             level = input("Válasszon nehézséget: ")
-    clear()
+        clear()
+        if menu == "2":
+            dic = {1: "Heroes", 2: "Macskák", 3: "Országok"}
+            for i in range(len(dic)):
+                print(i)
+            topic = input("Válasszon témát: ")
+        clear()
+    # clear()
     return level, topic
 
 def words(level, topic):
