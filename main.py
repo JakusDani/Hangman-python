@@ -1,22 +1,35 @@
+from os import system, name
+from time import sleep
+def clear():
+    _ = system('clear')
+
 def menu():
-    print("1. játék kezdése")
-    print("2. beállítások")
-    print("3. kilépés")
-    menu = input("Kérem válasszon a menüből: ")
-    print(menu)
-    if menu == "2":
-        topic = difficulty()
-        print(topic[1])
-    # return menu
+    menu = ""
+    level = "1"
+    topic = "sup"
+    while menu != "3":
+        print("1. Játék kezdése\n2. Beállítások\n3. Kilépés")
+        print("\n\nlevel: {}\ntopic: {}".format(level, topic))
+        menu = input("Kérem válasszon a menüből: ")
+        clear()
+        if menu == "2":
+            settings = difficulty(level, topic)
+            level = settings[0]
+            topic = settings[1]
+        # return menu
+    print("Köszi a játékot")
 
 
-def difficulty():
-    topic = ""
-    level = ""
-    print("1. Téma: {}".format(topic))
-    print("2. nehézség: {}".format(level))
-    level = input("")
-    return topic, level
+def difficulty(level, topic):
+    menu = ""
+    while menu != "3":
+        print("1. nehézség\n2. Téma\n3. Vissza")
+        menu = input("Válasszon nehézséget, vagy témát: ")
+        if menu == "1":
+            print("1. Easy\n2. Medium\n3. Hard")
+            level = input("Válasszon nehézséget: ")
+    clear()
+    return level, topic
 
 def words(level, topic):
     pass
