@@ -3,6 +3,7 @@ from time import sleep
 def clear():
     _ = system('clear')
 
+
 def menu():
     menu = ""
     level = "1"
@@ -10,7 +11,7 @@ def menu():
     while menu != "3":
         print("1. Játék kezdése\n2. Beállítások\n3. Kilépés")
         print("\n\nlevel: {}\ntopic: {}".format(level, topic))
-        menu = input("Kérem válasszon a menüből: ")
+        menu = input("\nKérem válasszon a menüből: ")
         clear()
         if menu == "2":
             settings = difficulty(level, topic)
@@ -23,20 +24,28 @@ def menu():
 def difficulty(level, topic):
     menu = ""
     while menu != "3":
-        print("1. nehézség\n2. Téma\n3. Vissza")
-        menu = input("Válasszon nehézséget, vagy témát: ")
+        print("1. Nehézség\n2. Téma\n3. Vissza")
+        menu = input("Kérem válasszon nehézséget, vagy témát: ")
+        clear()
         if menu == "1":
-            print("1. Easy\n2. Medium\n3. Hard")
-            level = input("Válasszon nehézséget: ")
+            dicLevel = {1: "Easy", 2: "Medium", 3: "Hard"}
+            lenght = len(dicLevel)
+            for  i in range(lenght):
+                print("{}. {}".format(i + 1, dicLevel[i + 1]))
+            level = int(input("Válasszon nehézséget: "))
+            level = dicLevel[level]
         clear()
         if menu == "2":
-            dic = {1: "Heroes", 2: "Macskák", 3: "Országok"}
-            for i in range(len(dic)):
-                print(i)
-            topic = input("Válasszon témát: ")
+            dicTopic = {1: "Heroes", 2: "Macskák", 3: "Országok"}
+            lenght = len(dicTopic)
+            for i in range(lenght):
+                print("{}. {}".format(i + 1, dicTopic[i + 1]))
+            topic = int(input("Kérem válasszon témát: "))
+            topic = dicTopic[topic]
         clear()
     # clear()
     return level, topic
+
 
 def words(level, topic):
     pass
