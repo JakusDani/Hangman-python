@@ -1,5 +1,6 @@
 from os import system, name
 from time import sleep
+import random
 
 
 def clear():
@@ -16,7 +17,7 @@ def menu():
         menu = input("\nKérem válasszon a menüből: ")
         clear()
         if menu == "1":
-            gameLogic('Easy')
+            gameLogic('Easy', 'heroes')
         if menu == "2":
             settings = difficulty(level, topic)
             level = settings[0]
@@ -67,8 +68,34 @@ def words(topic):
         pass
 
 
-def gameLogic(level):
-    pass
+def gameLogic(level, topic):
+    arr = words(topic)
+    result = random.choice(arr) # randomszó
+    resultlst = [char for char in result]
+    question = [] # _ _ _
+    choice = '' # A már választott betűk
+    choicelst = [' ', '-']
+    life = 7
+    for i in resultlst:
+        if i == ' ':
+            question.append(i)
+        elif i == '-':
+            question.append(i)
+        else:
+            question.append('_')
+    while life != 0 or result != choice: #Ez csak azt veszi figyelembe, hogy ha elfogy a hp, vagy direktbe kitalálják a szót.
+        for x in range(len(resultlst)):
+            # print(x)
+            if choice.lower() == resultlst[x].lower():
+                # print(x)
+                question[x] = resultlst[x]
+            else:
+                pass
+                # question += ''.join('_ ')
+        print(result)
+        print(question)
+        choice = input("\nKérem tippeljen: ")
+        choicelst.append(choice)
 
 
 def end(bool):
@@ -77,7 +104,7 @@ def end(bool):
 
 def main():
     # menu()
-    words('heroes')
+    gameLogic('Easy', 'heroes')
 
 
 main()
