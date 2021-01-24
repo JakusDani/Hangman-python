@@ -16,7 +16,7 @@ def menu():
         menu = input("\nKérem válasszon a menüből: ")
         clear()
         if menu == "1":
-            gameLogic()
+            gameLogic('Easy')
         if menu == "2":
             settings = difficulty(level, topic)
             level = settings[0]
@@ -51,12 +51,23 @@ def difficulty(level, topic):
     return level, topic
 
 
-def words(level, topic):
-    with open("heroes.txt") as reader:
-        print(reader)
-    print("asd")
+def words(topic):
+    if topic == "heroes":
+        arr = []
+        f = open("{}.txt".format(topic), "r")
+        for x in f:
+            if '(' in x:
+                test = x.split('(')
+                arr.append(test[0])
+            else:
+                arr.append(x.replace("\n", ""))
+        f.close()
+        return arr
+    else:
+        pass
 
-def gameLogic():
+
+def gameLogic(level):
     pass
 
 
@@ -66,8 +77,7 @@ def end(bool):
 
 def main():
     # menu()
-    gameLogic()
-    words()
+    words('heroes')
 
 
 main()
