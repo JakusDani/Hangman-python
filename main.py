@@ -1,5 +1,7 @@
 from os import system, name
 from time import sleep
+
+
 def clear():
     _ = system('clear')
 
@@ -50,8 +52,9 @@ def difficulty(level, topic):
 
 
 def words(level, topic):
-    pass
-
+    with open("heroes.txt") as reader:
+        print(reader)
+    print("asd")
 
 def gameLogic():
     pass
@@ -62,7 +65,9 @@ def end(bool):
 
 
 def main():
-    menu()
+    # menu()
+    gameLogic()
+    words()
 
 
 main()
