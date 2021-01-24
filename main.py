@@ -74,8 +74,10 @@ def gameLogic(level, topic):
     resultlst = [char for char in result]
     question = [] # _ _ _
     choice = '' # A már választott betűk
-    choicelst = [' ', '-']
+    choicelst = []
     life = 7
+    answer = ''
+    # counter = 0
     for i in resultlst:
         if i == ' ':
             question.append(i)
@@ -83,20 +85,20 @@ def gameLogic(level, topic):
             question.append(i)
         else:
             question.append('_')
-    while life != 0 or result != choice: #Ez csak azt veszi figyelembe, hogy ha elfogy a hp, vagy direktbe kitalálják a szót.
+    while not (answer == result or life == 0):
+        counter = 0
         for x in range(len(resultlst)):
-            # print(x)
             if choice.lower() == resultlst[x].lower():
-                # print(x)
                 question[x] = resultlst[x]
-            else:
-                pass
-                # question += ''.join('_ ')
-        print(result)
-        print(question)
+                counter += 1
+        if counter == 0:
+            life -= 1
+        print(result, life)
+        answer = ''.join(question)
+        print(answer)
         choice = input("\nKérem tippeljen: ")
         choicelst.append(choice)
-
+        print(choicelst, resultlst, question)
 
 def end(bool):
     pass
