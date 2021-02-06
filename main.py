@@ -6,12 +6,12 @@ import random
 def clear():
     _ = system('clear')
 
-
 def menu():
     menu = ""
     level = "Easy"
     topic = "Heroes"
     while menu != "3":
+        clear()
         print("1. Játék kezdése\n2. Beállítások\n3. Kilépés")
         print("\n\nlevel: {}\ntopic: {}".format(level, topic))
         menu = input("\nKérem válasszon a menüből: ")
@@ -71,13 +71,12 @@ def words(topic):
 def gameLogic(level, topic):
     arr = words(topic)
     result = random.choice(arr) # randomszó
-    resultlst = [char for char in result]
+    resultlst = list(result)
     question = [] # _ _ _
     choice = '' # A már választott betűk
     choicelst = []
-    life = 7
+    life = 2
     answer = ''
-    # counter = 0
     for i in resultlst:
         if i == ' ':
             question.append(i)
@@ -85,28 +84,35 @@ def gameLogic(level, topic):
             question.append(i)
         else:
             question.append('_')
-    while not (answer == result or life == 0):
+    while not (life == 0):
+        clear()
+        print(result, life)
+        answer = ' '.join(question)
+        print(answer)
+        choice = input("\nKérem tippeljen: ")
         counter = 0
         for x in range(len(resultlst)):
             if choice.lower() == resultlst[x].lower():
                 question[x] = resultlst[x]
                 counter += 1
         if counter == 0:
-            life -= 1
-        print(result, life)
-        answer = ''.join(question)
-        print(answer)
-        choice = input("\nKérem tippeljen: ")
+            life -= 1  
         choicelst.append(choice)
-        print(choicelst, resultlst, question)
+        if resultlst == question:
+            clear()
+            print(f"You WIN!!, the correct answer is: {result}")
+            sleep(2)
+            return True
+    print(f"You LOSE!!, the correct answer is: {result}")
+    sleep(2)
+    return False
 
 def end(bool):
     pass
 
 
 def main():
-    # menu()
-    gameLogic('Easy', 'heroes')
+    menu()
 
 
 main()
